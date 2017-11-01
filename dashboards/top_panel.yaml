@@ -1,0 +1,101 @@
+clock:
+    widget_type: clock
+    time_format: "24hr"
+
+label:
+    widget_type: label
+    text: Test
+
+label1:
+    widget_type: label
+    text: Test
+
+label2:
+    widget_type: label
+    text: Test
+
+label3:
+    widget_type: label
+    text: Test
+
+label4:
+    widget_type: label
+    text: Test
+
+label5:
+    widget_type: label
+    text: Test
+
+label6:
+    widget_type: label
+    text: Hello
+
+away_mode:
+    widget_type: switch
+    title: Away Mode
+    entity: input_boolean.away_mode
+    state_text: 1
+    state_map:
+        "on": Actief
+        "off": Uit
+
+rolluiken:
+    widget_type: switch
+    title: Rolluiken
+    entity: input_boolean.rolluiken
+    state_text: 1
+    icon_on: mdi-blinds
+    icon_off: mdi-blinds
+    state_map: 
+        "on": Open
+        "off": Dicht
+
+speakers:
+    widget_type: switch
+    title: Speakers
+    title2: Bureau
+    entity: switch.speakers_boven
+    icon_on: mdi-speaker
+    icon_off: mdi-speaker-off
+    state_text: 1
+    state_map:
+        "on": Actief
+        "off": Uit
+
+weather:
+    widget_type: weather
+    units: "&deg;C"
+
+licht_computer:
+    widget_type: switch
+    title: Licht Computer
+    entity: light.licht_computer
+    icon_on: fa-lightbulb-o
+    icon_off: fa-lightbulb-o
+    state_text: 1
+    state_map:
+        "on": Aan
+        "off": Uit
+
+reload:
+    widget_type: reload
+    title: Herladen
+
+
+shield:
+    widget_type: media_player
+    entity: media_player.shield
+    title: Shield
+
+bureau_mp:
+    widget_type: media_player
+    entity: media_player.bureau
+    title: Bureau
+
+
+    
+layout:
+    - clock(2x1), weather(2x2), licht_computer, label5, label4, reload
+    - away_mode, rolluiken, speakers, label3, label2, label1
+
+

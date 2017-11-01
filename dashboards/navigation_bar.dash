@@ -1,0 +1,30 @@
+load_slaapkamer:
+    widget_type: navigate
+    icon_active: fa-bed
+    icon_inactive: fa-bed
+    title: Slaapkamer
+    dashboard: slaapkamer
+
+load_living:
+    widget_type: navigate
+    title: Living
+    icon_active: mdi-sofa
+    icon_inactive: mdi-sofa
+    dashboard: living
+
+load_bureau:
+    widget_type: navigate
+    title: Bureau
+   	icon_active: mdi-desktop-mac
+    icon_inactive: mdi-desktop-mac
+    dashboard: bureau
+
+load_media_players:
+    widget_type: navigate
+    title: Media
+    icon_active: mdi-airplay
+    icon_inactive: mdi-airplay
+    dashboard: media
+
+layout:
+    - load_slaapkamer, load_living, load_bureau, load_media_players

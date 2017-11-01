@@ -1,0 +1,30 @@
+#
+# Main arguments, all optional
+#
+title: Media Players
+widget_dimensions: [120, 120]
+widget_margins: [5, 5]
+columns: 8
+global_parameters:
+    use_comma: 1
+    precision: 1
+    use_hass_icon: 1
+
+
+shield:
+    widget_type: media_player
+    entity: media_player.shield
+    title: Shield
+
+bureau_mp:
+    widget_type: media_player
+    entity: media_player.bureau
+    title: Bureau
+
+
+layout:
+    - include: top_panel
+    - shield(3x2), bureau_mp(3x2)
+    - 
+    - 
+    - include: navigation_bar

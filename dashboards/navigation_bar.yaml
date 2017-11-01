@@ -1,0 +1,23 @@
+load_slaapkamer:
+    widget_type: navigate
+    title: Slaapkamer
+    icon_inactive: fa-bed
+    dashboard: slaapkamer
+
+load_living:
+    widget_type: navigate
+    title: Living
+    dashboard: living
+
+load_bureau:
+    widget_type: navigate
+    title: Bureau
+    dashboard: bureau
+
+load_media_players:
+    widget_type: navigate
+    title: Media
+    dashboard: media
+
+layout:
+    - load_slaapkamer, load_living, load_bureau, load_media_players

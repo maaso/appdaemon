@@ -1,0 +1,20 @@
+hello_world:
+  module: hello
+  class: HelloWorld
+rolluiken_controller:
+  module: rolluiken
+  class: RolluikController
+speakers_controller:
+  module: speakers
+  class: SpeakerController
+light_computer:
+  module: licht_computer
+  class: LichtComputerController
+auto_light_living:
+  module: auto_lights
+  class: AutoLights
+  light: "light.tafel"
+auto_light_bureau:
+  module: auto_lights
+  class: AutoLights
+  light: "light.licht_computer"

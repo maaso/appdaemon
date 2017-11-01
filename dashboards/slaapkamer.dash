@@ -1,0 +1,122 @@
+#
+# Main arguments, all optional
+#
+title: Slaapkamer
+widget_dimensions: [120, 120]
+widget_margins: [5, 5]
+columns: 8
+global_parameters:
+    use_comma: 1
+    precision: 1
+    use_hass_icon: 1
+
+clock:
+    widget_type: clock
+    time_format: "24hr"
+
+label:
+    widget_type: label
+    text: Test
+
+label1:
+    widget_type: label
+    text: Test
+
+label2:
+    widget_type: label
+    text: Test
+
+label3:
+    widget_type: label
+    text: Test
+
+label4:
+    widget_type: label
+    text: Test
+
+label5:
+    widget_type: label
+    text: Test
+
+label6:
+    widget_type: label
+    text: Hello
+
+away_mode:
+    widget_type: switch
+    title: Away Mode
+    entity: input_boolean.away_mode
+    state_text: 1
+    state_map:
+        "on": Aan
+        "off": Uit
+
+rolluiken:
+    widget_type: switch
+    title: Rolluiken
+    entity: input_boolean.rolluiken
+    state_text: 1
+    icon_on: mdi-blinds
+    icon_off: mdi-blinds
+    state_map: 
+        "on": Open
+        "off": Dicht
+
+speakers:
+    widget_type: switch
+    title: Speakers
+    title2: Bureau
+    entity: switch.speakers_boven
+    icon_on: mdi-speaker
+    icon_off: mdi-speaker-off
+    state_text: 1
+    state_map:
+        "on": Actief
+        "off": Uit
+
+weather:
+    widget_type: weather
+    units: "&deg;C"
+
+licht_computer:
+    widget_type: switch
+    title: Licht Computer
+    entity: light.licht_computer
+    icon_on: fa-lightbulb-o
+    icon_off: fa-lightbulb-o
+    state_text: 1
+    state_map:
+        "on": Aan
+        "off": Uit
+
+reload:
+    widget_type: reload
+    title: Herladen
+
+
+rolluik_up:
+    widget_type: switch
+    title: Rolluik
+    title2: Openen
+    entity: switch.rolluik_slaapkamer_openen
+    icon_on: fa-arrow-up
+    icon_off: fa-arrow-up
+
+rolluik_down:
+    widget_type: switch
+    title: Rolluik
+    title2: Sluiten
+    entity: switch.rolluik_slaapkamer_sluiten
+    icon_on: fa-arrow-down
+    icon_off: fa-arrow-down
+
+
+    
+layout:
+    - include: top_panel
+    - spacer, spacer, spacer, spacer, spacer, spacer, spacer, rolluik_up
+    - spacer, spacer, spacer, spacer, spacer, spacer, spacer, rolluik_down
+    - 
+    - include: navigation_bar
+
+

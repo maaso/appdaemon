@@ -1,0 +1,17 @@
+AppDaemon:
+  logfile: STDOUT
+  errorfile: STDERR
+  threads: 10
+HASS:
+  ha_url: http://192.168.1.100:8123
+HADashboard:
+ dash_url: http://192.168.1.100:5555
+# HADashboard:
+  # dash_url: http://vault:5050
+HADashboard:
+  dash_url: http://vault:5050
+# Apps
+# hello_world:
+  # module: hello
+  # class: HelloWorld
+
