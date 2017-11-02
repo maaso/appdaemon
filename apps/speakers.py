@@ -42,7 +42,3 @@ class SpeakerController(appapi.AppDaemon):
     # Check if still paused and turn off if this is the case
     if player_state["state"] == "idle" and harmony_state["attributes"]["current_activity"] == "Spotify":
       self.call_service("remote/turn_off", entity_id = "remote.harmony_hub")
-
-
-
-## test deploy
