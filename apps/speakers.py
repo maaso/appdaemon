@@ -6,7 +6,7 @@ class SpeakerController(appapi.AppDaemon):
   #initialize() function which will be called at startup and reload
   def initialize(self):
     # Listen for changes to Bureau media player
-    self.listen_state(self.speakers_boven_cb, "media_player.bureau")
+    self.listen_state(self.speakers_boven_cb, "media_player.bureau_cca")
     # Listen for changes to Living media player
     self.listen_state(self.speakers_living_cb, "media_player.living")
 
@@ -15,7 +15,7 @@ class SpeakerController(appapi.AppDaemon):
     if new == "playing" and self.get_state("switch.speakers_boven") == "off": 
       # Activate upstairs speakers
       self.turn_on("switch.speakers_boven")
-    if new == "idle":
+    if new == "off":
       # Deactivate upstairs speakers
       self.turn_off("switch.speakers_boven")
 
