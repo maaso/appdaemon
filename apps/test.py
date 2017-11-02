@@ -18,3 +18,5 @@ class LightTest(appapi.AppDaemon):
 
   def off_cb(self, kwargs):
     self.turn_off("light.licht_computer")
+
+  # test commit for integration
