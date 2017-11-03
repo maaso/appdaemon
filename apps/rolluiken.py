@@ -31,7 +31,7 @@ class RolluikController(appapi.AppDaemon):
     state = self.get_state("switch.away_mode")
     # If on, open the blinds
     if state == "on":
-      self.rolluik_controller("on", None)
+      self.rolluik_controller("on", [None])
 
   def close_at_sunset_cb(self, kwargs):
     self.rolluik_controller("off", None)
@@ -42,18 +42,14 @@ class RolluikController(appapi.AppDaemon):
   def rolluik_controller(self, desired, subset):
     all_blinds = ["switch.rolluiken", "switch.rolluik_bureau", "switch.rolluik_living", "switch.rolluik_slaapkamer"]
     if subset is None:
-      self.log('no subset')
       for blind in all_blinds:
         self.action_handler(blind, desired)
     else:
-      self.log('processing subset')
       for blind in subset:
         self.action_handler(blind, desired)
 
 
   def action_handler(self, blind, desiredState):
-    self.log(blind)
-    self.log(desiredState)
     if desiredState == "on": 
       # Open blinds
       self.turn_on(blind)
