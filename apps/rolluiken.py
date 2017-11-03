@@ -23,7 +23,6 @@ class RolluikController(appapi.AppDaemon):
 
   ## MAIN LOGIC
   def rolluik_control_cb(self, entity, attribute, old, new, kwargs):
-    self.log(self)
     self.rolluik_controller(self, new, None)
 
   def open_at_sunrise_cb(self, kwargs):
@@ -41,9 +40,6 @@ class RolluikController(appapi.AppDaemon):
 
   ## INTERNAL HANDLERS
   def rolluik_controller(self, desired, subset, kwargs):
-    self.log(self)
-    self.log(desired)
-    self.log(subset)
     all_blinds = ["switch.rolluiken", "switch.rolluik_bureau", "switch.rolluik_living", "switch.rolluik_slaapkamer"]
     if subset is None:
       for blind in all_blinds:
