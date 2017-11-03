@@ -39,7 +39,7 @@ class RolluikController(appapi.AppDaemon):
 
 
   ## INTERNAL HANDLERS
-  def rolluik_controller(self, desired, subset, kwargs):
+  def rolluik_controller(self, desired, subset):
     all_blinds = ["switch.rolluiken", "switch.rolluik_bureau", "switch.rolluik_living", "switch.rolluik_slaapkamer"]
     if subset is None:
       self.log('no subset')
