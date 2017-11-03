@@ -40,7 +40,8 @@ class RolluikController(appapi.AppDaemon):
 
 
   ## INTERNAL HANDLERS
-  def rolluik_controller(desired, subset, kwargs):
+  def rolluik_controller(self, desired, subset, kwargs):
+    self.log(self)
     self.log(desired)
     self.log(subset)
     all_blinds = ["switch.rolluiken", "switch.rolluik_bureau", "switch.rolluik_living", "switch.rolluik_slaapkamer"]
