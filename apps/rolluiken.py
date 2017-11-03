@@ -40,6 +40,8 @@ class RolluikController(appapi.AppDaemon):
 
   ## INTERNAL HANDLERS
   def rolluik_controller(self, desired, subset, kwargs):
+    log(desired)
+    log(subset)
     all_blinds = ["switch.rolluiken", "switch.rolluik_bureau", "switch.rolluik_living", "switch.rolluik_slaapkamer"]
     if subset is None:
       for blind in all_blinds:
@@ -50,6 +52,8 @@ class RolluikController(appapi.AppDaemon):
 
 
   def action_handler(self, blind, desiredState, kwargs):
+    log(blind)
+    log(desiredState)
     if desiredState == "on": 
       # Open blinds
       self.turn_on(blind)
