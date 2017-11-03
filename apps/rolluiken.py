@@ -47,13 +47,13 @@ class RolluikController(appapi.AppDaemon):
     all_blinds = ["switch.rolluiken", "switch.rolluik_bureau", "switch.rolluik_living", "switch.rolluik_slaapkamer"]
     if subset is None:
       for blind in all_blinds:
-        self.action_handler(blind, desired)
+        self.action_handler(self, blind, desired)
     else:
       for blind in subset:
-        self.action_handler(blind, desired)
+        self.action_handler(self, blind, desired)
 
 
-  def action_handler(blind, desiredState, kwargs):
+  def action_handler(self, blind, desiredState, kwargs):
     self.log(blind)
     self.log(desiredState)
     if desiredState == "on": 
