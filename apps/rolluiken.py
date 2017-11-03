@@ -49,7 +49,7 @@ class RolluikController(appapi.AppDaemon):
         self.action_handler(self, blind, desired)
 
 
-  def action_handler(self, blind, desiredState):
+  def action_handler(self, blind, desiredState, kwargs):
     if desiredState == "on": 
       # Open blinds
       self.turn_on(blind)
