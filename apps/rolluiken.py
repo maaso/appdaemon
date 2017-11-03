@@ -23,7 +23,7 @@ class RolluikController(appapi.AppDaemon):
 
   ## MAIN LOGIC
   def rolluik_control_cb(self, entity, attribute, old, new, kwargs):
-    rolluik_controller(new)
+    self.rolluik_controller(new)
 
   def open_at_sunrise_cb(self, kwargs):
     # Check if we are in away mode
@@ -31,10 +31,10 @@ class RolluikController(appapi.AppDaemon):
     state = self.get_state("switch.away_mode")
     # If on, open the blinds
     if state == "on":
-      rolluik_controller("on")
+      self.rolluik_controller("on")
 
   def close_at_sunset_cb(self, kwargs):
-    rolluik_controller("off")
+    self.rolluik_controller("off")
 
 
 
@@ -43,10 +43,10 @@ class RolluikController(appapi.AppDaemon):
     all_blinds = ["switch.rolluiken", "switch.rolluik_bureau", "switch.rolluik_living", "switch.rolluik_slaapkamer"]
     if subset:
       for blind in subset:
-        action_handler(blind, desired)
+        self.action_handler(blind, desired)
     else:
       for blind in all_blinds:
-        action_handler(blind, desired)
+        self.action_handler(blind, desired)
 
 
   def action_handler(blind, desiredState):
