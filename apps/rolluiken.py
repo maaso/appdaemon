@@ -42,9 +42,11 @@ class RolluikController(appapi.AppDaemon):
   def rolluik_controller(self, desired, subset, kwargs):
     all_blinds = ["switch.rolluiken", "switch.rolluik_bureau", "switch.rolluik_living", "switch.rolluik_slaapkamer"]
     if subset is None:
+      self.log('no subset')
       for blind in all_blinds:
         self.action_handler(self, blind, desired)
     else:
+      self.log('processing subset')
       for blind in subset:
         self.action_handler(self, blind, desired)
 
