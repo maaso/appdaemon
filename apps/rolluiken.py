@@ -44,14 +44,14 @@ class RolluikController(appapi.AppDaemon):
     if subset is None:
       self.log('no subset')
       for blind in all_blinds:
-        self.action_handler(self, blind, desired)
+        self.action_handler(blind, desired)
     else:
       self.log('processing subset')
       for blind in subset:
-        self.action_handler(self, blind, desired)
+        self.action_handler(blind, desired)
 
 
-  def action_handler(self, blind, desiredState, kwargs):
+  def action_handler(self, blind, desiredState):
     self.log(blind)
     self.log(desiredState)
     if desiredState == "on": 
