@@ -24,7 +24,7 @@ class RolluikController(appapi.AppDaemon):
   ## MAIN LOGIC
   def rolluik_control_cb(self, entity, attribute, old, new, kwargs):
     self.log(self)
-    self.rolluik_controller(new, None)
+    self.rolluik_controller(self, new, None)
 
   def open_at_sunrise_cb(self, kwargs):
     # Check if we are in away mode
