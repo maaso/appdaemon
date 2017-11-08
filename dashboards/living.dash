@@ -15,5 +15,4 @@ layout:
     - include: top_panel
     - 
     - 
-    - 
     - include: navigation_bar

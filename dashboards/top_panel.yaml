@@ -33,7 +33,7 @@ label6:
 away_mode:
     widget_type: switch
     title: Away Mode
-    entity: input_boolean.away_mode
+    entity: switch.away_mode
     state_text: 1
     state_map:
         "on": Actief
@@ -42,7 +42,7 @@ away_mode:
 rolluiken:
     widget_type: switch
     title: Rolluiken
-    entity: input_boolean.rolluiken
+    entity: switch.rolluiken
     state_text: 1
     icon_on: mdi-blinds
     icon_off: mdi-blinds
@@ -95,7 +95,6 @@ bureau_mp:
 
     
 layout:
-    - clock(2x1), weather(2x2), licht_computer, label5, label4, reload
-    - away_mode, rolluiken, speakers, label3, label2, label1
+    - clock(2x1), away_mode, rolluiken, licht_computer, speakers, label4, reload
 
 
