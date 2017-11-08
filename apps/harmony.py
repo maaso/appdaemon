@@ -49,10 +49,9 @@ class HarmonyController(appapi.AppDaemon):
       self.run_in(self.power_off_check, 10, activityName = 'TV Kijken')
 
 
-  def power_off_check(self, activityName):
-    self.log(activityName)
+  def power_off_check(self, args):
     # Check current harmony state
     harmony_state = self.get_state("remote.harmony_hub", "all")
-    if harmony_state["attributes"]["current_activity"] == activityName:
+    if harmony_state["attributes"]["current_activity"] == args.activityName:
       # Turn off
       self.call_service("remote/turn_off", entity_id = "remote.harmony_hub")
