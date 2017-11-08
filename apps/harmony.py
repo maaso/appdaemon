@@ -32,6 +32,12 @@ class HarmonyController(appapi.AppDaemon):
       # Activate tv activity
       self.call_service("remote/turn_on", entity_id = "remote.harmony_hub", activity = "25429995")
 
+  def harmony_hub_cb(self, entity, attribute, old, new, kwargs):
+    self.log(entity)
+    self.log(attribute)
+    self.log(old)
+    self.log(new)
+
 
   def speakers_living_cb(self, entity, attribute, old, new, kwargs):
     # Get full state of the Harmony Remote component
