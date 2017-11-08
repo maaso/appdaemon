@@ -2,17 +2,41 @@
 # Main arguments, all optional
 #
 title: Living
-widget_dimensions: [120, 120]
-widget_margins: [5, 5]
+widget_dimensions: [110, 110]
+widget_margins: [8, 8]
 columns: 8
+rows: 5
 global_parameters:
     use_comma: 1
     precision: 1
     use_hass_icon: 1
 
 
+tv:
+    widget_type: switch
+    entity: switch.harmony_remote__tv
+    title: TV
+    icon_on: mdi-television
+    icon_off: mdi-television
+
+spotify:
+    widget_type: switch
+    entity: switch.harmony_remote__spotify
+    title: Spotify
+    icon_on: mdi-spotify
+    icon_off: mdi-spotify
+
+cast:
+    widget_type: switch
+    entity: switch.harmony_remote__cast_audio
+    title: Cast Audio
+    icon_on: mdi-cast-connected
+    icon_off: mdi-cast
+
+
 layout:
     - include: top_panel
-    - 
+    - tv, spotify, cast
+    -
     - 
     - include: navigation_bar
