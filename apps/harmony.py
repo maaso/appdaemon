@@ -15,22 +15,46 @@ class HarmonyController(appapi.AppDaemon):
 
 
   def cast_audio_cb(self, entity, attribute, old, new, kwargs):
-    # Only react if new state is "on"
+    # Immediately react if new state is "on"
     if new == "on": 
       # Activate cast audio activity
       self.call_service("remote/turn_on", entity_id = "remote.harmony_hub", activity = "29225980")
+    if new == "off":
+      # Check current harmony state
+      harmony_state = self.get_state("remote.harmony_hub", "all")
+      if harmony_state["attributes"]["current_activity"] == "Cast Audio":
+        # Turn off
+        self.call_service("remote/turn_off", entity_id = "remote.harmony_hub")
+
+
 
   def spotify_cb(self, entity, attribute, old, new, kwargs):
-    # Only react if new state is "on"
+    # Immediately react if new state is "on"
     if new == "on": 
       # Activate spotify activity
       self.call_service("remote/turn_on", entity_id = "remote.harmony_hub", activity = "25430094")
+    if new == "off":
+      # Check current harmony state
+      harmony_state = self.get_state("remote.harmony_hub", "all")
+      if harmony_state["attributes"]["current_activity"] == "Spotify":
+        # Turn off
+        self.call_service("remote/turn_off", entity_id = "remote.harmony_hub")
+
+
 
   def tv_cb(self, entity, attribute, old, new, kwargs):
-    # Only react if new state is "on"
+    # Immediately react if new state is "on"
     if new == "on": 
       # Activate tv activity
       self.call_service("remote/turn_on", entity_id = "remote.harmony_hub", activity = "25429995")
+    if new == "off":
+      # Check current harmony state
+      harmony_state = self.get_state("remote.harmony_hub", "all")
+      if harmony_state["attributes"]["current_activity"] == "TV Kijken":
+        # Turn off
+        self.call_service("remote/turn_off", entity_id = "remote.harmony_hub")
+
+
 
   def harmony_hub_cb(self, entity, attribute, old, new, kwargs):
     if new == "off":
