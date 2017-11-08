@@ -20,7 +20,7 @@ class HarmonyController(appapi.AppDaemon):
       self.turn_off('switch.harmony_remote__tv')
     if new == "off":
       # give Harmony activity some time to update
-      self.run_in(self.power_off_check, 10, activityName = 'Cast Audio')
+      self.run_in(self.power_off_check, 10, 'Cast Audio')
 
 
 
@@ -33,7 +33,7 @@ class HarmonyController(appapi.AppDaemon):
       self.turn_off('switch.harmony_remote__tv')
     if new == "off":
       # give Harmony activity some time to update
-      self.run_in(self.power_off_check, 10, activityName = 'Spotify')
+      self.run_in(self.power_off_check, 10, 'Spotify')
 
 
 
@@ -46,12 +46,13 @@ class HarmonyController(appapi.AppDaemon):
       self.turn_off('switch.harmony_remote__spotify')
     if new == "off":
       # give Harmony activity some time to update
-      self.run_in(self.power_off_check, 10, activityName = 'TV Kijken')
+      self.run_in(self.power_off_check, 10, 'TV Kijken')
 
 
-  def power_off_check(self, args):
+  def power_off_check(self, arg):
+    self.log(arg)
     # Check current harmony state
     harmony_state = self.get_state("remote.harmony_hub", "all")
-    if harmony_state["attributes"]["current_activity"] == args.activityName:
+    if harmony_state["attributes"]["current_activity"] == arg:
       # Turn off
       self.call_service("remote/turn_off", entity_id = "remote.harmony_hub")
