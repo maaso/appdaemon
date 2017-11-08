@@ -38,7 +38,7 @@ class HarmonyController(appapi.AppDaemon):
       switches = [ 'switch.harmony_remote__cast_audio', 'switch.harmony_remote__spotify', 'switch.harmony_remote__tv' ]
       for switch in switches:
         self.turn_off(switch)
-    if new == "on"
+    if new == "on":
       # New activity was started, figure out which one
       harmony_state = self.get_state("remote.harmony_hub", "all")
       if harmony_state["attributes"]["current_activity"] == "Cast Audio":
