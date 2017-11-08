@@ -19,11 +19,8 @@ class HarmonyController(appapi.AppDaemon):
       self.turn_off('switch.harmony_remote__spotify')
       self.turn_off('switch.harmony_remote__tv')
     if new == "off":
-      # Check current harmony state
-      harmony_state = self.get_state("remote.harmony_hub", "all")
-      if harmony_state["attributes"]["current_activity"] == "Cast Audio":
-        # Turn off
-        self.call_service("remote/turn_off", entity_id = "remote.harmony_hub")
+      # give Harmony activity some time to update
+      self.run_in(power_off_check, 10, activityName = 'Cast Audio')
 
 
 
@@ -35,11 +32,8 @@ class HarmonyController(appapi.AppDaemon):
       self.turn_off('switch.harmony_remote__cast_audio')
       self.turn_off('switch.harmony_remote__tv')
     if new == "off":
-      # Check current harmony state
-      harmony_state = self.get_state("remote.harmony_hub", "all")
-      if harmony_state["attributes"]["current_activity"] == "Spotify":
-        # Turn off
-        self.call_service("remote/turn_off", entity_id = "remote.harmony_hub")
+      # give Harmony activity some time to update
+      self.run_in(power_off_check, 10, activityName = 'Spotify')
 
 
 
@@ -51,8 +45,14 @@ class HarmonyController(appapi.AppDaemon):
       self.turn_off('switch.harmony_remote__cast_audio')
       self.turn_off('switch.harmony_remote__spotify')
     if new == "off":
-      # Check current harmony state
-      harmony_state = self.get_state("remote.harmony_hub", "all")
-      if harmony_state["attributes"]["current_activity"] == "TV Kijken":
-        # Turn off
-        self.call_service("remote/turn_off", entity_id = "remote.harmony_hub")
+      # give Harmony activity some time to update
+      self.run_in(power_off_check, 10, activityName = 'TV Kijken')
+
+
+  def power_off_check(self, activityName):
+    self.log(activityName)
+    # Check current harmony state
+    harmony_state = self.get_state("remote.harmony_hub", "all")
+    if harmony_state["attributes"]["current_activity"] == activityName:
+      # Turn off
+      self.call_service("remote/turn_off", entity_id = "remote.harmony_hub")
