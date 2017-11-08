@@ -33,31 +33,23 @@ class HarmonyController(appapi.AppDaemon):
       self.call_service("remote/turn_on", entity_id = "remote.harmony_hub", activity = "25429995")
 
   def harmony_hub_cb(self, entity, attribute, old, new, kwargs):
-    self.log(entity)
-    self.log(attribute)
-    self.log(old)
-    self.log(new)
-
-
-  def speakers_living_cb(self, entity, attribute, old, new, kwargs):
-    # Get full state of the Harmony Remote component
-    harmony_state = self.get_state("remote.harmony_hub", "all")
-
-    if new == "playing" and harmony_state["attributes"]["current_activity"] == "PowerOff":
-      # Activate downstairs speakers
-      self.call_service("remote/turn_on", entity_id = "remote.harmony_hub", activity = "25430094")
-
-    # If state changes to idle, see if we are still idle in 5 minutes and turn off
-    if new == "idle" and harmony_state["attributes"]["current_activity"] == "Spotify":
-      self.run_in(self.paused_auto_off_cb, 300)
-
-
-
-  def paused_auto_off_cb(self, kwargs):
-    # Get full state of the Spotify component
-    player_state = self.get_state("media_player.living", "all")
-    # Get full state of the Harmony Remote component
-    harmony_state = self.get_state("remote.harmony_hub", "all")
-    # Check if still paused and turn off if this is the case
-    if player_state["state"] == "idle" and harmony_state["attributes"]["current_activity"] == "Spotify":
-      self.call_service("remote/turn_off", entity_id = "remote.harmony_hub")
+    if new == "off":
+      # All devices were turned off, deacitvate all switches
+      switches = [ 'switch.harmony_remote__cast_audio', 'switch.harmony_remote__spotify', 'switch.harmony_remote__tv' ]
+      for switch in switches:
+        self.turn_off(switch)
+    if new == "on"
+      # New activity was started, figure out which one
+      harmony_state = self.get_state("remote.harmony_hub", "all")
+      if harmony_state["attributes"]["current_activity"] == "Cast Audio":
+        # turn off others
+        self.turn_off('switch.harmony_remote__spotify')
+        self.turn_off('switch.harmony_remote__tv')
+      if harmony_state["attributes"]["current_activity"] == "Spotify":
+        # turn off others
+        self.turn_off('switch.harmony_remote__cast_audio')
+        self.turn_off('switch.harmony_remote__tv')
+      if harmony_state["attributes"]["current_activity"] == "TV Kijken":
+        # turn off others
+        self.turn_off('switch.harmony_remote__cast_audio')
+        self.turn_off('switch.harmony_remote__spotify')
