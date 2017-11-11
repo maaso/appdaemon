@@ -2,38 +2,32 @@ clock:
     widget_type: clock
     time_format: "24hr"
 
-label:
-    widget_type: label
-    text: Test
+temperature:
+    widget_type: sensor
+    title: Temperatuur
+    entity: sensor.dark_sky_temperature
 
-label1:
-    widget_type: label
-    text: Test
+garage:
+    widget_type: cover
+    icon_on: mdi-garage-open
+    icon_off: mdi-garage
+    title: Garage
+    entity: cover.garage
+    state_text: 1
+    state_map:
+        "open": Open
+        "closed": Dicht
 
-label2:
-    widget_type: label
-    text: Test
-
-label3:
-    widget_type: label
-    text: Test
-
-label4:
-    widget_type: label
-    text: Test
-
-label5:
-    widget_type: label
-    text: Test
-
-label6:
-    widget_type: label
-    text: Hello
+precip_chance:
+    widget_type: sensor
+    title: Kans op
+    title2: Neerslag
+    entity: sensor.dark_sky_precip_probability
 
 away_mode:
     widget_type: switch
     title: Away Mode
-    entity: input_boolean.away_mode
+    entity: switch.away_mode
     state_text: 1
     state_map:
         "on": Actief
@@ -42,7 +36,7 @@ away_mode:
 rolluiken:
     widget_type: switch
     title: Rolluiken
-    entity: input_boolean.rolluiken
+    entity: switch.rolluiken
     state_text: 1
     icon_on: mdi-blinds
     icon_off: mdi-blinds
@@ -95,7 +89,6 @@ bureau_mp:
 
     
 layout:
-    - clock(2x1), weather(2x2), licht_computer, label5, label4, reload
-    - away_mode, rolluiken, speakers, label3, label2, label1
+    - clock(2x1), temperature, precip_chance, garage, rolluiken, away_mode, reload
 
 

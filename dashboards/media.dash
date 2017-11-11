@@ -2,9 +2,10 @@
 # Main arguments, all optional
 #
 title: Media Players
-widget_dimensions: [120, 120]
-widget_margins: [5, 5]
+widget_dimensions: [110, 110]
+widget_margins: [8, 8]
 columns: 8
+rows: 5
 global_parameters:
     use_comma: 1
     precision: 1
