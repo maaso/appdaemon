@@ -29,7 +29,7 @@ class RolluikController(appapi.AppDaemon):
     self.log(attr)
     self.log(old)
     self.log(new)
-    self.call_service("mqtt/publish", topic = "stat/rolluiken/bureau_slider", payload = new, qos = 1, retain = true)
+    self.call_service("mqtt/publish", topic = "stat/rolluiken/bureau_slider", payload = new, qos = 1, retain = True)
 
 
   ## MAIN LOGIC
