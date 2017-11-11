@@ -17,6 +17,17 @@ class RolluikController(appapi.AppDaemon):
     self.listen_state(self.rolluik_living_open_cb, "switch.rolluik_living_openen")
     self.listen_state(self.rolluik_living_close_cb, "switch.rolluik_living_sluiten")
 
+    # SLIDERS
+    self.listen_state(self.slider_cb, "sensor.rolluik_bureau_command")
+
+
+  def slider_cb(self, entity, attr, old, new, kwargs):
+    self.log(entity)
+    self.log(attr)
+    self.log(old)
+    self.log(new)
+    self.call_service("mqtt/publish", topic = "stat/rolluiken/bureau_slider", payload = new, qos = 1, retain = true)
+
 
   def rolluik_living_open_cb(self, entity, attr, old, new, kwargs):
   	# When activated, turn it off after 22 seconds
