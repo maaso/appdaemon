@@ -45,6 +45,7 @@ class RolluikController(appapi.AppDaemon):
         self.open(abs(move), new)
 
 
+  ## close 
   def close(self, toMove, resultingPercentage):
     time = math.floor((toMove / 100) * 15)
     self.run_in(self.close_finished, time, result = resultingPercentage)
@@ -55,6 +56,7 @@ class RolluikController(appapi.AppDaemon):
     self.call_service("mqtt/publish", topic = "stat/rolluiken/bureau_slider", payload = kwargs['result'], qos = 1, retain = True)
 
 
+  ## open
   def open(self, toMove, resultingPercentage):
     time = math.ceil((toMove / 100) * 15)
     self.run_in(self.open_finished, time, result = resultingPercentage)
