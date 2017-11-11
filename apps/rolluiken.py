@@ -1,7 +1,10 @@
 import appdaemon.appapi as appapi
 import datetime
+import math
 
 class RolluikController(appapi.AppDaemon):
+  bureau_open_time = 15
+
   #initialize() function which will be called at startup and reload
   def initialize(self):
     # Check if blinds need to open at sunrise
@@ -29,7 +32,36 @@ class RolluikController(appapi.AppDaemon):
     self.log(attr)
     self.log(old)
     self.log(new)
-    self.call_service("mqtt/publish", topic = "stat/rolluiken/bureau_slider", payload = new, qos = 1, retain = True)
+    current = self.get_state("sensor.rolluik_bureau_status")
+
+    if new != current:
+      # should always be true but check just in case
+      # determine if we need to open or close
+      move = new - current
+      if move < 0:
+        self.close(abs(move), new)
+      else:
+        self.open(abs(move), new)
+
+
+  def close(self, toMove, resultingPercentage):
+    time = math.floor((toMove / 100) * bureau_open_time)
+    self.run_in(close_finished, time, result = resultingPercentage)
+    self.turn_on("switch.rolluik_bureau_sluiten")
+
+  def close_finished(self, kwargs):
+    self.turn_on("switch.rolluik_bureau_sluiten")
+    self.call_service("mqtt/publish", topic = "stat/rolluiken/bureau_slider", payload = kwargs['result'], qos = 1, retain = True)
+
+
+  def open(self, toMove, resultingPercentage):
+    time = math.ceil((toMove / 100) * bureau_open_time)
+    self.run_in(open_finished, time, result = resultingPercentage)
+    self.turn_on("switch.rolluik_bureau_openen")
+
+  def open_finished(self, kwargs):
+    self.turn_off("switch.rolluik_bureau_openen")
+    self.call_service("mqtt/publish", topic = "stat/rolluiken/bureau_slider", payload = kwargs['result'], qos = 1, retain = True)
 
 
   ## MAIN LOGIC
