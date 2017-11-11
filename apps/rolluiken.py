@@ -33,6 +33,7 @@ class RolluikController(appapi.AppDaemon):
     self.log(old)
     self.log(new)
     current = self.get_state("sensor.rolluik_bureau_status")
+    self.log(current)
 
     if new != current:
       # should always be true but check just in case
