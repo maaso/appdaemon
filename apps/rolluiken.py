@@ -28,10 +28,6 @@ class RolluikController(appapi.AppDaemon):
 
 
   def slider_cb(self, entity, attr, old, new, kwargs):
-    self.log(entity)
-    self.log(attr)
-    self.log(old)
-    self.log(new)
     current = self.get_state("sensor.rolluik_bureau_status")
     self.log(current)
 
@@ -48,17 +44,19 @@ class RolluikController(appapi.AppDaemon):
   ## close 
   def close(self, toMove, resultingPercentage):
     time = math.floor((toMove / 100) * 15)
+    self.log(time)
     self.run_in(self.close_finished, time, result = resultingPercentage)
     self.turn_on("switch.rolluik_bureau_sluiten")
 
   def close_finished(self, kwargs):
-    self.turn_on("switch.rolluik_bureau_sluiten")
+    self.turn_off("switch.rolluik_bureau_sluiten")
     self.call_service("mqtt/publish", topic = "stat/rolluiken/bureau_slider", payload = kwargs['result'], qos = 1, retain = True)
 
 
   ## open
   def open(self, toMove, resultingPercentage):
     time = math.ceil((toMove / 100) * 15)
+    self.log(time)
     self.run_in(self.open_finished, time, result = resultingPercentage)
     self.turn_on("switch.rolluik_bureau_openen")
 
