@@ -3,7 +3,7 @@ import datetime
 import math
 
 class RolluikController(appapi.AppDaemon):
-  bureau_open_time = 15
+  bureau_open_time = 10
 
   #initialize() function which will be called at startup and reload
   def initialize(self):
@@ -43,7 +43,7 @@ class RolluikController(appapi.AppDaemon):
 
   ## close 
   def close(self, toMove, resultingPercentage):
-    time = math.floor((toMove / 100) * 15)
+    time = math.floor((toMove / 100) * self.bureau_open_time)
     self.log(time)
     self.run_in(self.close_finished, time, result = resultingPercentage)
     self.turn_on("switch.rolluik_bureau_sluiten")
@@ -55,7 +55,7 @@ class RolluikController(appapi.AppDaemon):
 
   ## open
   def open(self, toMove, resultingPercentage):
-    time = math.ceil((toMove / 100) * 15)
+    time = math.ceil((toMove / 100) * self.bureau_open_time)
     self.log(time)
     self.run_in(self.open_finished, time, result = resultingPercentage)
     self.turn_on("switch.rolluik_bureau_openen")
