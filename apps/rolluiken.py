@@ -46,7 +46,7 @@ class RolluikController(appapi.AppDaemon):
 
 
   def close(self, toMove, resultingPercentage):
-    time = math.floor((toMove / 100) * bureau_open_time)
+    time = math.floor((toMove / 100) * 15)
     self.run_in(close_finished, time, result = resultingPercentage)
     self.turn_on("switch.rolluik_bureau_sluiten")
 
@@ -56,7 +56,7 @@ class RolluikController(appapi.AppDaemon):
 
 
   def open(self, toMove, resultingPercentage):
-    time = math.ceil((toMove / 100) * bureau_open_time)
+    time = math.ceil((toMove / 100) * 15)
     self.run_in(open_finished, time, result = resultingPercentage)
     self.turn_on("switch.rolluik_bureau_openen")
 
