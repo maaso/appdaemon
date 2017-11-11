@@ -38,7 +38,7 @@ class RolluikController(appapi.AppDaemon):
     if new != current:
       # should always be true but check just in case
       # determine if we need to open or close
-      move = new - current
+      move = int(new) - int(current)
       if move < 0:
         self.close(abs(move), new)
       else:
