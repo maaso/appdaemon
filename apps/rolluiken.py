@@ -75,7 +75,7 @@ class RolluikController(appapi.AppDaemon):
     state = self.get_state("switch.away_mode")
     # If on, open the blinds
     if state == "on":
-      self.rolluik_controller("on", [None])
+      self.rolluik_controller("on", None)
 
   def close_at_sunset_cb(self, kwargs):
     self.rolluik_controller("off", None)
