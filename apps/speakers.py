@@ -22,7 +22,7 @@ class SpeakerController(hass.Hass):
 
   def speakers_living_cb(self, entity, attribute, old, new, kwargs):
     # Get full state of the Harmony Remote component
-    harmony_state = self.get_state("remote.harmony_hub", "all")
+    harmony_state = self.get_state("remote.harmony_hub")
 
     if new == "playing" and harmony_state["attributes"]["current_activity"] == "PowerOff":
       # Activate downstairs speakers
