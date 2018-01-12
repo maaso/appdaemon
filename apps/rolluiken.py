@@ -1,7 +1,9 @@
 import appdaemon.plugins.hass.hassapi as hass
 import datetime
+import math
 
 class RolluikController(hass.Hass):
+  bureau_open_time = 10
   #initialize() function which will be called at startup and reload
   def initialize(self):
     # Check if blinds need to open at sunrise
@@ -20,6 +22,47 @@ class RolluikController(hass.Hass):
     self.listen_state(self.rolluik_living_open_cb, "switch.rolluik_living_openen")
     self.listen_state(self.rolluik_living_close_cb, "switch.rolluik_living_sluiten")
 
+    # SLIDERS
+    self.listen_state(self.slider_cb, "sensor.rolluik_bureau_command")
+
+
+  def slider_cb(self, entity, attr, old, new, kwargs):
+    current = self.get_state("sensor.rolluik_bureau_status")
+    self.log(current)
+
+    if new != current:
+      # should always be true but check just in case
+      # determine if we need to open or close
+      move = int(new) - int(current)
+      if move < 0:
+        self.close(abs(move), new)
+      else:
+        self.open(abs(move), new)
+
+
+  ## close 
+  def close(self, toMove, resultingPercentage):
+    time = math.floor((toMove / 100) * self.bureau_open_time)
+    self.log(time)
+    self.run_in(self.close_finished, time, result = resultingPercentage)
+    self.turn_on("switch.rolluik_bureau_sluiten")
+
+  def close_finished(self, kwargs):
+    self.turn_off("switch.rolluik_bureau_sluiten")
+    self.call_service("mqtt/publish", topic = "stat/rolluiken/bureau_slider", payload = kwargs['result'], qos = 1, retain = True)
+
+
+  ## open
+  def open(self, toMove, resultingPercentage):
+    time = math.ceil((toMove / 100) * self.bureau_open_time)
+    self.log(time)
+    self.run_in(self.open_finished, time, result = resultingPercentage)
+    self.turn_on("switch.rolluik_bureau_openen")
+
+  def open_finished(self, kwargs):
+    self.turn_off("switch.rolluik_bureau_openen")
+    self.call_service("mqtt/publish", topic = "stat/rolluiken/bureau_slider", payload = kwargs['result'], qos = 1, retain = True)
+
 
   ## MAIN LOGIC
   def rolluik_control_cb(self, entity, attribute, old, new, kwargs):
@@ -31,7 +74,7 @@ class RolluikController(hass.Hass):
     state = self.get_state("switch.away_mode")
     # If on, open the blinds
     if state == "on":
-      self.rolluik_controller("on", [None])
+      self.rolluik_controller("on", None)
 
   def close_at_sunset_cb(self, kwargs):
     self.rolluik_controller("off", None)
