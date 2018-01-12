@@ -51,7 +51,7 @@ class HarmonyController(hass.Hass):
 
   def power_off_check(self, kwargs):
     # Check current harmony state
-    harmony_state = self.get_state("remote.harmony_hub")
+    harmony_state = self.get_state(entity="remote.harmony_hub", attribute="current_activity")
     self.log(harmony_state)
     # if harmony_state["attributes"]["current_activity"] == kwargs['activityName']:
     #   # Turn off
