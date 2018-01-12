@@ -27,11 +27,11 @@ class HarmonyController(hass.Hass):
     # Immediately react if new state is "on"
     if new == "on": 
       # Activate cast audio activity
-      self.call_service("input_select/select_option", entity_id = "input_select.harmony_activity", option = "Cast Audio")
+      self.select_option("input_select.harmony_activity", "Cast Audio")
       self.turn_off('switch.harmony_remote__spotify')
       self.turn_off('switch.harmony_remote__tv')
     if new == "off" and self.get_state("input_select.harmony_activity") == "Cast Audio":
-      self.call_service("input_select/select_option", entity_id = "input_select.harmony_activity", option = "Power Off")
+      self.select_option("input_select.harmony_activity", "Power Off")
 
 
 
@@ -39,11 +39,11 @@ class HarmonyController(hass.Hass):
     # Immediately react if new state is "on"
     if new == "on": 
       # Activate spotify activity
-      self.call_service("input_select/select_option", entity_id = "input_select.harmony_activity", option = "Spotify")
+      self.select_option("input_select.harmony_activity", "Spotify")
       self.turn_off('switch.harmony_remote__cast_audio')
       self.turn_off('switch.harmony_remote__tv')
     if new == "off" and self.get_state("input_select.harmony_activity") == "Spotify":
-      self.call_service("input_select/select_option", entity_id = "input_select.harmony_activity", option = "Power Off")
+      self.select_option("input_select.harmony_activity", "Power Off")
 
 
 
@@ -51,9 +51,9 @@ class HarmonyController(hass.Hass):
     # Immediately react if new state is "on"
     if new == "on": 
       # Activate tv activity
-      self.call_service("input_select/select_option", entity_id = "input_select.harmony_activity", option = "Tv Kijken")
+      self.select_option("input_select.harmony_activity", "Tv Kijken")
       self.turn_off('switch.harmony_remote__cast_audio')
       self.turn_off('switch.harmony_remote__spotify')
     if new == "off" and self.get_state("input_select.harmony_activity") == "Tv Kijken":
-      self.call_service("input_select/select_option", entity_id = "input_select.harmony_activity", option = "Power Off")
+      self.select_option("input_select.harmony_activity", "Power Off")
 
