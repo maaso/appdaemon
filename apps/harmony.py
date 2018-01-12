@@ -51,9 +51,7 @@ class HarmonyController(hass.Hass):
     # Immediately react if new state is "on"
     if new == "on": 
       # Activate tv activity
-            self.call_service("input_select/select_option", entity_id = "input_select.harmony_activity", option = "Tv Kijken")
-
-      self.call_service("remote/turn_on", entity_id = "remote.harmony_hub", activity = "25429995")
+      self.call_service("input_select/select_option", entity_id = "input_select.harmony_activity", option = "Tv Kijken")
       self.turn_off('switch.harmony_remote__cast_audio')
       self.turn_off('switch.harmony_remote__spotify')
     if new == "off" and self.get_state("input_select.harmony_activity") == "Tv Kijken":
