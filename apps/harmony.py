@@ -9,6 +9,14 @@ class HarmonyController(hass.Hass):
     self.listen_state(self.cast_audio_cb, "switch.harmony_remote__cast_audio")
     self.listen_state(self.spotify_cb, "switch.harmony_remote__spotify")
     self.listen_state(self.tv_cb, "switch.harmony_remote__tv")
+    # Listen for changes in Harmony Activity Input Select
+    self.listen_state(self.activity_handler, "input_select.harmony_activity")
+
+
+
+  ### Main activity handler
+  def activity_handler(self, entity, attribute, old, new, kwargs):
+    self.log(new)
 
 
   def cast_audio_cb(self, entity, attribute, old, new, kwargs):
