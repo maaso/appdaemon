@@ -16,7 +16,11 @@ class HarmonyController(hass.Hass):
 
   ### Main activity handler
   def activity_handler(self, entity, attribute, old, new, kwargs):
-    self.log(new)
+    activityDictionary = { "Tv Kijken": 25429995, "Spotify": 25430094, "Cast Audio": 29225980 }
+    if new == "Power Off":
+      self.call_service("remote/turn_off", entity_id = "remote.harmony_hub")
+    else:
+      self.call_service("remote/turn_on", entity_id = "remote.harmony_hub", activity = activityDictionary[new])
 
 
   def cast_audio_cb(self, entity, attribute, old, new, kwargs):
