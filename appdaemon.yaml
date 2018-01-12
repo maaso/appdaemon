@@ -2,11 +2,6 @@ appdaemon:
   logfile: STDOUT
   errorfile: STDERR
   threads: 10
-  time_zone: <time zone>
-  api_port: 5000
-  api_key: !secret api_key
-  api_ssl_certificate: <path/to/root/CA/cert>
-  api_ssl_key: <path/to/root/CA/key>
   plugins:
     HASS:
       type: hass
