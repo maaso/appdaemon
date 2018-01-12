@@ -7,4 +7,4 @@ appdaemon:
       type: hass
       ha_url: http://192.168.1.100:8123
 hadashboard:
- dash_url: http://192.168.1.100:5555
+  dash_url: http://192.168.1.100:5555
