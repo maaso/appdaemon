@@ -1,7 +1,7 @@
-import appdaemon.appapi as appapi
+import appdaemon.plugins.hass.hassapi as hass
 import datetime
 
-class LightTest(appapi.AppDaemon):
+class LightTest(hass.Hass):
   #initialize() function which will be called at startup and reload
   def initialize(self):
     # Create a time object for 7pm

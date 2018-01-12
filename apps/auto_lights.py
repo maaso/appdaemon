@@ -1,9 +1,9 @@
-import appdaemon.appapi as appapi
+import appdaemon.plugins.hass.hassapi as hass
 import datetime
 
 # Will turn on configured light automatically after sundown if in Away Mode
 # Will automatically turn off configured light at 00:30h
-class AutoLights(appapi.AppDaemon):
+class AutoLights(hass.Hass):
   def initialize(self):
     # Turn on at sunset
     self.run_at_sunset(self.auto_light_on_cb)

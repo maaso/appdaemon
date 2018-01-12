@@ -1,6 +1,6 @@
-import appdaemon.appapi as appapi
+import appdaemon.plugins.hass.hassapi as hass
 
-class LichtComputerController(appapi.AppDaemon):
+class LichtComputerController(hass.Hass):
   #initialize() function which will be called at startup and reload
   def initialize(self):
     # Check if we need to activate/deactivate the computer light when computer is turned off

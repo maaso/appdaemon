@@ -1,8 +1,8 @@
 
-import appdaemon.appapi as appapi
+import appdaemon.plugins.hass.hassapi as hass
 import datetime
 
-class HarmonyController(appapi.AppDaemon):
+class HarmonyController(hass.Hass):
   #initialize() function which will be called at startup and reload
   def initialize(self):
     # Listen for changes in Harmony Activity switches

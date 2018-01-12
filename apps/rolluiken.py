@@ -1,7 +1,7 @@
-import appdaemon.appapi as appapi
+import appdaemon.plugins.hass.hassapi as hass
 import datetime
 
-class RolluikController(appapi.AppDaemon):
+class RolluikController(hass.Hass):
   #initialize() function which will be called at startup and reload
   def initialize(self):
     # Check if blinds need to open at sunrise
