@@ -56,3 +56,4 @@ class HarmonyController(hass.Hass):
       self.turn_off('switch.harmony_remote__spotify')
     if new == "off" and self.get_state("input_select.harmony_activity") == "Tv Kijken":
       self.call_service("input_select/select_option", entity_id = "input_select.harmony_activity", option = "Power Off")
+
