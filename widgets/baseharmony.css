@@ -1,0 +1,80 @@
+.widget-baseharmony-{{id}} {
+    position: relative;
+}
+
+.widget-baseharmony-{{id}} .state_text {
+    font-size: 85%;
+}
+
+.widget-baseharmony-{{id}} .title {
+    position: absolute;
+    top: 5px;
+    width: 100%;
+}
+
+.widget-baseharmony-{{id}} .title2 {
+    position: absolute;
+    top: 23px;
+    width: 100%;
+}
+
+.widget-baseharmony-{{id}} .state_text {
+    position: absolute;
+    top: 38px;
+    width: 100%;
+}
+
+.widget-baseharmony-{{id}} .icon {
+    position: absolute;
+    top: 43px;
+    width: 100%;
+}
+
+.widget-baseharmony-{{id}} .toggle-area {
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 75%;
+}
+
+.widget-baseharmony-{{id}} .level {
+    display: inline-block;
+}
+
+.widget-baseharmony-{{id}} .unit {
+    display: inline-block;
+}
+
+.widget-baseharmony-{{id}} .levelunit {
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+}
+
+.widget-baseharmony-{{id}} .secondary-icon {
+    position: absolute;
+    bottom: 0px;
+    font-size: 20px;
+    width: 32px;
+    color: white;
+}
+
+.widget-baseharmony-{{id}} .secondary-icon.plus {
+    right: 24px;
+}
+
+.widget-baseharmony-{{id}} .secondary-icon.plus i {
+    padding-top: 10px;
+    padding-left: 30px;
+}
+
+.widget-baseharmony-{{id}} .secondary-icon.minus {
+    left: 8px;
+}
+
+.widget-baseharmony-{{id}} .secondary-icon.minus i {
+    padding-top: 10px;
+    padding-right: 30px;
+}
