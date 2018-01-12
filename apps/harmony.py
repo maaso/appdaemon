@@ -30,7 +30,7 @@ class HarmonyController(hass.Hass):
       self.call_service("input_select/select_option", entity_id = "input_select.harmony_activity", option = "Cast Audio")
       self.turn_off('switch.harmony_remote__spotify')
       self.turn_off('switch.harmony_remote__tv')
-    if new == "off" && self.get_state("input_select.harmony_activity") == "Cast Audio":
+    if new == "off" and self.get_state("input_select.harmony_activity") == "Cast Audio":
       self.call_service("input_select/select_option", entity_id = "input_select.harmony_activity", option = "Power Off")
 
 
@@ -42,7 +42,7 @@ class HarmonyController(hass.Hass):
       self.call_service("input_select/select_option", entity_id = "input_select.harmony_activity", option = "Spotify")
       self.turn_off('switch.harmony_remote__cast_audio')
       self.turn_off('switch.harmony_remote__tv')
-    if new == "off" && self.get_state("input_select.harmony_activity") == "Spotify":
+    if new == "off" and self.get_state("input_select.harmony_activity") == "Spotify":
       self.call_service("input_select/select_option", entity_id = "input_select.harmony_activity", option = "Power Off")
 
 
@@ -56,5 +56,5 @@ class HarmonyController(hass.Hass):
       self.call_service("remote/turn_on", entity_id = "remote.harmony_hub", activity = "25429995")
       self.turn_off('switch.harmony_remote__cast_audio')
       self.turn_off('switch.harmony_remote__spotify')
-    if new == "off" && self.get_state("input_select.harmony_activity") == "Tv Kijken":
+    if new == "off" and self.get_state("input_select.harmony_activity") == "Tv Kijken":
       self.call_service("input_select/select_option", entity_id = "input_select.harmony_activity", option = "Power Off")
