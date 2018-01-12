@@ -33,10 +33,17 @@ cast:
     icon_on: mdi-cast-connected
     icon_off: mdi-cast
 
+kerstboom:
+    widget_type: switch
+    entity: switch.kerstboom
+    title: Kerstboom
+    icon_on: mdi-pine-tree
+    icon_off: mdi-pine-tree
+
 
 layout:
     - include: top_panel
-    - tv, spotify, cast
+    - tv, spotify, cast, spacer, spacer,spacer, kerstboom
     -
     - 
     - include: navigation_bar
