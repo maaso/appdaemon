@@ -13,7 +13,7 @@ class HarmonyController(hass.Hass):
     self.listen_state(self.activity_handler, "input_select.harmony_activity")
     # Listen for changes to Harmony state to update buttons if triggered externally
     # Only fire if state remains the same for at least 60 seconds
-    self.listen_state(self.harmony_cb, "remote.harmony_hub", attribute = "current_activity", new = "Cast Audio", duration = 60)
+    self.listen_state(self.harmony_cb, "remote.harmony_hub", attribute = "current_activity", new = "Cast Audio")
 
 
 
