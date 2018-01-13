@@ -30,23 +30,23 @@ class HarmonyController(hass.Hass):
   def harmony_cb(self, entity, attribute, old, new, kwargs):
     self.log(attribute)
     self.log(new)
-    if new == "Power Off":
-      # Make sure all buttons are off
-      self.turn_off('switch.harmony_remote__cast_audio')
-      self.turn_off('switch.harmony_remote__spotify')
-      self.turn_off('switch.harmony_remote__tv')
-    if new == "Cast Audio":
-      self.turn_on('switch.harmony_remote__cast_audio')
-      self.turn_off('switch.harmony_remote__spotify')
-      self.turn_off('switch.harmony_remote__tv')
-    if new == "Spotify":
-      self.turn_off('switch.harmony_remote__cast_audio')
-      self.turn_on('switch.harmony_remote__spotify')
-      self.turn_off('switch.harmony_remote__tv')
-    if new == "Tv Kijken":
-      self.turn_off('switch.harmony_remote__cast_audio')
-      self.turn_off('switch.harmony_remote__spotify')
-      self.turn_on('switch.harmony_remote__tv')
+    # if new == "Power Off":
+    #   # Make sure all buttons are off
+    #   self.turn_off('switch.harmony_remote__cast_audio')
+    #   self.turn_off('switch.harmony_remote__spotify')
+    #   self.turn_off('switch.harmony_remote__tv')
+    # if new == "Cast Audio":
+    #   self.turn_on('switch.harmony_remote__cast_audio')
+    #   self.turn_off('switch.harmony_remote__spotify')
+    #   self.turn_off('switch.harmony_remote__tv')
+    # if new == "Spotify":
+    #   self.turn_off('switch.harmony_remote__cast_audio')
+    #   self.turn_on('switch.harmony_remote__spotify')
+    #   self.turn_off('switch.harmony_remote__tv')
+    # if new == "Tv Kijken":
+    #   self.turn_off('switch.harmony_remote__cast_audio')
+    #   self.turn_off('switch.harmony_remote__spotify')
+    #   self.turn_on('switch.harmony_remote__tv')
 
 
   ### Button handlers
