@@ -12,7 +12,8 @@ class HarmonyController(hass.Hass):
     # Listen for changes in Harmony Activity Input Select
     self.listen_state(self.activity_handler, "input_select.harmony_activity")
     # Listen for changes to Harmony state to update buttons if triggered externally
-    self.listen_state(self.harmony_cb, entity="remote.harmony_hub", attribute="current_activity")
+    # Only fire if state remains the same for at least 60 seconds
+    self.listen_state(self.harmony_cb, entity="remote.harmony_hub", attribute="current_activity", duration=60)
 
 
 
@@ -27,10 +28,23 @@ class HarmonyController(hass.Hass):
 
   ### Harmony state handler
   def harmony_cb(self, entity, attribute, old, new, kwargs):
-    self.log(entity)
-    self.log(attribute)
-    self.log(old)
-    self.log(new)
+    if new == "Power Off":
+      # Make sure all buttons are off
+      self.turn_off('switch.harmony_remote__cast_audio')
+      self.turn_off('switch.harmony_remote__spotify')
+      self.turn_off('switch.harmony_remote__tv')
+    if new == "Cast Audio":
+      self.turn_on('switch.harmony_remote__cast_audio')
+      self.turn_off('switch.harmony_remote__spotify')
+      self.turn_off('switch.harmony_remote__tv')
+    if new == "Spotify":
+      self.turn_off('switch.harmony_remote__cast_audio')
+      self.turn_on('switch.harmony_remote__spotify')
+      self.turn_off('switch.harmony_remote__tv')
+    if new == "Tv Kijken":
+      self.turn_off('switch.harmony_remote__cast_audio')
+      self.turn_off('switch.harmony_remote__spotify')
+      self.turn_on('switch.harmony_remote__tv')
 
 
   ### Button handlers
