@@ -11,6 +11,8 @@ class HarmonyController(hass.Hass):
     self.listen_state(self.tv_cb, "switch.harmony_remote__tv")
     # Listen for changes in Harmony Activity Input Select
     self.listen_state(self.activity_handler, "input_select.harmony_activity")
+    # Listen for changes to Harmony state to update buttons if triggered externally
+    self.listen_state(self.harmony_cb, "remote.harmony_hub")
 
 
 
@@ -23,6 +25,15 @@ class HarmonyController(hass.Hass):
       self.call_service("remote/turn_on", entity_id = "remote.harmony_hub", activity = activityDictionary[new])
 
 
+  ### Harmony state handler
+  def harmony_cb(self, entity, attribute, old, new, kwargs):
+    self.log(entity)
+    self.log(attribute)
+    self.log(old)
+    self.log(new)
+
+
+  ### Button handlers
   def cast_audio_cb(self, entity, attribute, old, new, kwargs):
     # Immediately react if new state is "on"
     if new == "on": 
@@ -33,8 +44,6 @@ class HarmonyController(hass.Hass):
     if new == "off" and self.get_state("input_select.harmony_activity") == "Cast Audio":
       self.select_option("input_select.harmony_activity", "Power Off")
 
-
-
   def spotify_cb(self, entity, attribute, old, new, kwargs):
     # Immediately react if new state is "on"
     if new == "on": 
@@ -44,8 +53,6 @@ class HarmonyController(hass.Hass):
       self.turn_off('switch.harmony_remote__tv')
     if new == "off" and self.get_state("input_select.harmony_activity") == "Spotify":
       self.select_option("input_select.harmony_activity", "Power Off")
-
-
 
   def tv_cb(self, entity, attribute, old, new, kwargs):
     # Immediately react if new state is "on"
