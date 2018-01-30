@@ -9,8 +9,5 @@ class ZigbeeSwitch(hass.Hass):
 
 
   def switch_cb(self, entity, attribute, old, new, kwargs):
-    self.log('Zigbee Switch triggered')
-    self.log(old)
-    self.log(new) 
     # toggle coupled entity
     self.toggle(self.args["target"])
