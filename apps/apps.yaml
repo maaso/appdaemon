@@ -21,3 +21,8 @@ auto_light_bureau:
 harmony_hub_controller:
   module: harmony
   class: HarmonyController
+light_eetkamer:
+  module: zigbee_switch
+  class: ZigbeeSwitch
+  switch: "switch.lichtschakelaar_eetkamer"
+  target: "light.tafel"
