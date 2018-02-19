@@ -43,7 +43,7 @@ kerstboom:
 
 layout:
     - include: top_panel
-    - tv, spotify, cast, spacer, spacer,spacer, kerstboom
+    - tv, spotify, cast, spacer, spacer, spacer, spacer
     -
     - 
     - include: navigation_bar
