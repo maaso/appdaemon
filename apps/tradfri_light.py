@@ -8,6 +8,7 @@ class TradfriLight(hass.Hass):
 
   def switch_change_cb(self, entity, attribute, old, new, kwargs):
     # toggle coupled entity
+    self.log(new)
     if new == "on":
       self.call_service("zigate/raw_command", cmd = "0092", data = "02" + self.args["target"] + "010101")
     if new == "off":
