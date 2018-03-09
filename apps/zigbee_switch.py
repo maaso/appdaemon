@@ -1,7 +1,6 @@
 import appdaemon.plugins.hass.hassapi as hass
 
-# Will turn on configured light automatically after sundown if in Away Mode
-# Will automatically turn off configured light at 00:30h
+# Will toggle the specified target each time the switch changes state
 class ZigbeeSwitch(hass.Hass):
   def initialize(self):
     # set listener
