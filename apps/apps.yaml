@@ -29,5 +29,5 @@ light_eetkamer:
 light_slaapkamer:
   module: tradfri_light
   class: TradfriLight
-  switch: "switch.lichtschakelaar_eetkamer"
+  switch: "switch.lichtschakelaar_slaapkamer"
   target: "9354"
