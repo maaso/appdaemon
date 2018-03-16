@@ -43,14 +43,14 @@ kerstboom:
 volume_up:
     widget_type: script
     entity: script.harmony_volume_up
-    title: Vol. Up
+    title: Volume
     icon_on: mdi-volume-plus
     icon_off: mdi-volume-plus
 
 volume_down:
     widget_type: script
     entity: script.harmony_volume_down
-    title: Vol. Down
+    title: Volume
     icon_on: mdi-volume-minus
     icon_off: mdi-volume-minus
 
