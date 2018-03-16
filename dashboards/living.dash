@@ -43,12 +43,14 @@ kerstboom:
 volume_up:
     widget_type: script
     entity: script.harmony_volume_up
+    title: Vol. Up
     icon_on: mdi-volume-plus
     icon_off: mdi-volume-plus
 
 volume_down:
     widget_type: script
     entity: script.harmony_volume_down
+    title: Vol. Down
     icon_on: mdi-volume-minus
     icon_off: mdi-volume-minus
 
@@ -56,6 +58,6 @@ volume_down:
 layout:
     - include: top_panel
     - tv, spotify, cast, spacer, spacer, spacer, spacer
-    - spacer, volume_up
-    - spacer, volume_down
+    - volume_down, spacer, volume_up
+    - 
     - include: navigation_bar
