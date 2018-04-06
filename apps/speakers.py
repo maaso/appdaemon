@@ -26,7 +26,7 @@ class SpeakerController(hass.Hass):
 
     if new == "playing" and harmony_activity == "PowerOff":
       # Activate downstairs speakers
-      self.call_service("remote/turn_on", entity_id = "remote.harmony_hub", activity = "25430094")
+      self.turn_on("switch.harmony_remote__spotify")
 
     # If state changes to idle, see if we are still idle in 5 minutes and turn off
     if new == "idle" and harmony_activity == "Spotify":
@@ -41,4 +41,4 @@ class SpeakerController(hass.Hass):
     harmony_state = self.get_state("remote.harmony_hub", "all")
     # Check if still paused and turn off if this is the case
     if player_state["state"] == "idle" and harmony_state["attributes"]["current_activity"] == "Spotify":
-      self.call_service("remote/turn_off", entity_id = "remote.harmony_hub")
+      self.turn_off("switch.harmony_remote__spotify")
