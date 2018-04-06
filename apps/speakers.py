@@ -26,7 +26,6 @@ class SpeakerController(hass.Hass):
 
     if new == "playing" and harmony_activity == "PowerOff":
       # Activate downstairs speakers
-      self.log('Hello')
       self.turn_on("switch.harmony_remote__spotify")
 
     # If state changes to idle, see if we are still idle in 5 minutes and turn off
@@ -37,7 +36,8 @@ class SpeakerController(hass.Hass):
 
   def paused_auto_off_cb(self, kwargs):
     # Get full state of the Spotify component
-    player_state = self.get_state("media_player.living", "all")
+    player_state = self.get_state("media_player.living")
+    self.log(player_state)
     # Get full state of the Harmony Remote component
     harmony_state = self.get_state("remote.harmony_hub", "all")
     # Check if still paused and turn off if this is the case
