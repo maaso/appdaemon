@@ -37,9 +37,8 @@ class SpeakerController(hass.Hass):
   def paused_auto_off_cb(self, kwargs):
     # Get full state of the Spotify component
     player_state = self.get_state("media_player.living")
-    self.log(player_state)
     # Get full state of the Harmony Remote component
-    harmony_state = self.get_state("remote.harmony_hub", "all")
+    harmony_state = self.get_state("remote.harmony_hub", attribute="current_activity")
     # Check if still paused and turn off if this is the case
-    if player_state["state"] == "idle" and harmony_state["attributes"]["current_activity"] == "Spotify":
+    if player_state == "idle" and harmony_state == "Spotify":
       self.turn_off("switch.harmony_remote__spotify")
