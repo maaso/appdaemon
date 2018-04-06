@@ -26,6 +26,7 @@ class SpeakerController(hass.Hass):
 
     if new == "playing" and harmony_activity == "PowerOff":
       # Activate downstairs speakers
+      self.log('Hello')
       self.turn_on("switch.harmony_remote__spotify")
 
     # If state changes to idle, see if we are still idle in 5 minutes and turn off
