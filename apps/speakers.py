@@ -9,6 +9,8 @@ class SpeakerController(hass.Hass):
     self.listen_state(self.speakers_boven_cb, "media_player.bureau_cca")
     # Listen for changes to Living media player
     self.listen_state(self.speakers_living_cb, "media_player.living")
+    # Listen for changes to Living Chromecast Audio
+    self.listen_state(self.speakers_living_cca_cb, "media_player.living_room_speaker")
 
 
   def speakers_boven_cb(self, entity, attribute, old, new, kwargs):
@@ -32,6 +34,18 @@ class SpeakerController(hass.Hass):
     if new == "idle" and harmony_activity == "Spotify":
       self.run_in(self.paused_auto_off_cb, 300)
 
+
+  def speakers_living_cca_cb(self, entity, attribute, old, new, kwargs):
+    # Get full state of the Harmony Remote component
+    harmony_activity = self.get_state(entity="remote.harmony_hub", attribute="current_activity")
+
+    if new == "playing" and harmony_activity == "PowerOff":
+      # Activate downstairs speakers
+      self.turn_on("switch.harmony_remote__cast_audio")
+
+    # If state changes to off, see if we are still in the Cast Audio activity and turn off if this is the case
+    if new == "off" and harmony_activity == "Cast Audio":
+      self.turn_off("switch.harmony_remote__cast_audio")
 
 
   def paused_auto_off_cb(self, kwargs):
