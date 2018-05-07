@@ -28,6 +28,6 @@ light_eetkamer:
   target: "light.tafel"
 light_slaapkamer:
   module: tradfri_light
-  class: TradfriLight
+  class: ZigbeeSwitch
   switch: "switch.lichtschakelaar_slaapkamer"
-  target: "9354"
+  target: "light.lifx_247e90"
